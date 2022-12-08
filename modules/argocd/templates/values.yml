@@ -1,0 +1,26 @@
+configs:
+  cm:
+    url: ${url}
+    admin.enabled: "false"
+    exec.enabled: "true"
+    application.resourceTrackingMethod: annotation
+    timeout.reconciliation: 30s
+    dex.config: |
+      connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $dex.github.clientId
+          clientSecret: $dex.github.clientSecret
+  params:
+    server.insecure: true
+  rbac:
+    policy.default: "role:readonly"
+    scopes: '[email, groups]'
+    policy.csv: |
+${policies}
+  secret:
+    extra:
+      dex.github.clientId: ${github_oauth_client_id}
+      dex.github.clientSecret: ${github_oauth_client_secret}
