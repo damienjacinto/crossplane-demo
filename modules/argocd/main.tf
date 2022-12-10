@@ -1,17 +1,16 @@
 locals {
   argocd = "argocd"
   rbac = <<RBAC
-        p, role:app, applications, get, default/*, allow
-        p, role:app, applications, sync, default/*, allow
-        p, role:app, applications, update, default/*, allow
-        p, role:app, applications, action, default/*, allow
-        p, role:app, applications, override, default/*, allow
-        p, role:app, applications, delete, default/*, allow
-        p, role:app, applications, action/apps/Deployment/restart, default/*, allow
-        p, role:app, clusters, get, *, allow
-        p, role:app, repositories, get, *, allow
-        p, role:app, projects, get, *, allow
-        p, role:app, exec, create, */*, allow
+        p, role:org-admin, applications, *, */*, allow
+        p, role:org-admin, clusters, get, *, allow
+        p, role:org-admin, repositories, get, *, allow
+        p, role:org-admin, repositories, create, *, allow
+        p, role:org-admin, repositories, update, *, allow
+        p, role:org-admin, repositories, delete, *, allow
+        p, role:image-updater, applications, get, *, allow
+        p, role:image-updater, applications, upadte, *, allow
+        g, image-updater, role:image-updater
+        g, ${var.argocd_github_admin_user_email}, role:org-admin
 RBAC
 }
 
@@ -72,5 +71,12 @@ resource "kubectl_manifest" "certificate" {
     domain      = var.argocd_domain
     issuer_name = var.argocd_issuer_name
     secret_name = var.argocd_certificate_secret_name
+  })
+}
+
+resource "kubectl_manifest" "argocd_bootstrap_app" {
+  yaml_body = templatefile("${path.module}/templates/bootstrap-app.yml", {
+    namespace      = helm_release.argocd.namespace
+    repo_bootstrap = var.argocd_repo_bootstrap
   })
 }

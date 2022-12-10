@@ -10,4 +10,6 @@ module "argocd" {
   argocd_github_oauth_client_id     = var.argocd_github_oauth_client_id
   argocd_github_oauth_client_secret = var.argocd_github_oauth_client_secret
   argocd_issuer_name                = module.certmanager.clusterissuer_name
+  argocd_repo_bootstrap             = local.repo_bootstrap
+  argocd_github_admin_user_email    = local.admin_user_email
 }

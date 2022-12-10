@@ -1,8 +1,10 @@
 locals {
-  name            = "meetup"
-  cluster_version = "1.24"
-  region          = "eu-central-1"
-  email           = "djacinto@peaks.fr"
+  name             = "meetup"
+  cluster_version  = "1.24"
+  region           = "eu-central-1"
+  email            = "djacinto@peaks.fr"
+  repo_bootstrap   = "https://github.com/damienjacinto/app-meetup-argocd.git"
+  admin_user_email = "damien.jacinto@gmail.com"
 
   domain          = "meetup-peaks.ddns.net"
   traefik_domain  = "traefik.${local.domain}"

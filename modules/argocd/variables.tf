@@ -52,3 +52,13 @@ variable "argocd_issuer_name" {
   type    = string
   default = ""
 }
+
+variable "argocd_repo_bootstrap" {
+  type    = string
+  default = ""
+}
+
+variable "argocd_github_admin_user_email" {
+  type    = string
+  default = ""
+}
