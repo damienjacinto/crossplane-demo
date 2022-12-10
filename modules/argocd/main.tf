@@ -3,14 +3,11 @@ locals {
   rbac = <<RBAC
         p, role:org-admin, applications, *, */*, allow
         p, role:org-admin, clusters, get, *, allow
-        p, role:org-admin, repositories, get, *, allow
-        p, role:org-admin, repositories, create, *, allow
-        p, role:org-admin, repositories, update, *, allow
-        p, role:org-admin, repositories, delete, *, allow
-        p, role:image-updater, applications, get, *, allow
-        p, role:image-updater, applications, upadte, *, allow
+        p, role:org-admin, repositories, *, *, allow
+        p, role:image-updater, applications, get, */*, allow
+        p, role:image-updater, applications, update, */*, allow
         g, image-updater, role:image-updater
-        g, ${var.argocd_github_admin_user_email}, role:org-admin
+        g, ${var.argocd_github_admin_user_email}, role:admin
 RBAC
 }
 

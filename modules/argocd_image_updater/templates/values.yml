@@ -1,9 +1,11 @@
 config:
+  logLevel: debug
   argocd:
     grpcWeb: false
-    serverAddress: "http://argocd.argo"
+    serverAddress: "http://argocd-server"
     insecure: true
     plaintext: true
+    token: ${argocdtoken}
   registries:
   - name: ECR
     api_url: https://${registry}

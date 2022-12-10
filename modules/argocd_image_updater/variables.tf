@@ -33,3 +33,7 @@ variable "argocd_image_updater_role" {
   default = ""
 }
 
+variable "argocd_token" {
+  type    = string
+  default = ""
+}

@@ -1,5 +1,6 @@
 configs:
   cm:
+    accounts.image-updater: apiKey, login
     url: ${url}
     admin.enabled: "false"
     exec.enabled: "true"
