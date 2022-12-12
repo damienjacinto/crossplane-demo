@@ -5,3 +5,4 @@ variable "argocd_github_oauth_client_secret" {}
 variable "argocd_image_updater_registry" {}
 variable "argocd_image_updater_role" {}
 variable "argocd_token" {}
+variable "crossplane_role" {}

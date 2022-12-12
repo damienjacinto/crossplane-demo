@@ -16,4 +16,5 @@ spec:
     repoURL: ${repo_bootstrap}
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true

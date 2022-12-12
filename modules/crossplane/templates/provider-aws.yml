@@ -1,0 +1,10 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: aws-provider
+  namespace: ${namespace}
+spec:
+  package: "crossplane/provider-aws:${version_provider_aws}"
+  #"xpkg.upbound.io/crossplane-contrib/provider-aws:${version_provider_aws}"
+  controllerConfigRef:
+    name: aws-config
